@@ -1,9 +1,16 @@
 <div class="container">
-  <app-cockpit></app-cockpit>
+  <app-cockpit 
+  (serverCreated)="onServerAdded($event)"
+  (blueprintCreated)="onBlueprintAdded($event)"></app-cockpit>
   <hr>
   <div class="row">
     <div class="col-xs-12">
-      <app-server-element *ngFor="serverElement of serverElements" ></app-server-element>
+      <app-server-element 
+      *ngFor="let serverElement of serverElements" 
+      [srvElement]="serverElement"></app-server-element>
+      <!-- <app-server-element [element]="{type: 'server', name: 'Testserver', content: 'Just a test!'}"></app-server-element>
+      <app-server-element [element]="{type: 'blueprint', name: 'Testserver22', content: 'Just-a-test!'}"></app-server-element>
+      <app-server-element [element]="{type: 'server', name: 'Testserver400', content: '___Just a test!'}"></app-server-element> -->
     </div>
   </div>
 </div>
