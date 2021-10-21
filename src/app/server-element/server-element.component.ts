@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, ViewEncapsulation, SimpleChanges } from '@angular/core';
+import { ViewEncapsulation, Component, Input, OnInit, OnChanges,  SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -6,12 +6,15 @@ import { Component, Input, OnInit, OnChanges, ViewEncapsulation, SimpleChanges }
   styleUrls: ['./server-element.component.css'],
   // encapsulation: ViewEncapsulation.Emulated
 })
-export class ServerElementComponent implements OnInit, OnChanges {
+export class ServerElementComponent implements OnInit, OnChanges, DoCheck, 
+    AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
+
   @Input('srvElement') element: {
     type: string,
     name: string,
     content: string
   };
+  @Input() name;
 
 
   constructor() {
@@ -25,6 +28,30 @@ export class ServerElementComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     console.log('###ngOnInit called')
+  }
+
+  ngDoCheck() {
+    // console.log('ngDoCheck')
+  }
+
+  ngAfterContentInit() {
+    console.log('<<<AfterContentInit>>>')
+  }
+
+  ngAfterContentChecked() {
+    console.log('>>>>AfterContentChecked<<<<<')
+  }
+
+  ngAfterViewChecked() {
+    console.log('__________________ViewChecked')
+  }
+
+  ngAfterViewInit() {
+    console.log('ViewInit_______________________')
+  }
+
+  ngOnDestroy() {
+    console.log('%c xxxxxxxxxxxxxOnDestroyxxxxxxxxxxxxxxxx', 'color: red')
   }
 
 }
